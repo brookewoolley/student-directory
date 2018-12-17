@@ -13,6 +13,7 @@
 #   {name: "Norman Bates", cohort: :november}
 # ]
 
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -42,11 +43,23 @@ def print(students)
   end
 end
 
+def print_selected_letter(students)
+  puts "What names would you like me to return by first-letter?"
+  letter = gets.chomp
+  students.each_with_index do |student, index|
+  if student[:name][0] == letter.upcase
+    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+  end
+end
+end
+
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
+
 students = input_students
 print_header
-print(students)
+# print(students)
+print_selected_letter(students)
 print_footer(students)
