@@ -28,7 +28,11 @@ def input_students
     puts "Please enter your height in cm."
     height = gets.chomp
         students << {name: name, cohort: :november, country: country, height: height}
-    puts "Now we have #{students.count} students"
+    if students.length > 1
+      puts "Now we have #{students.count} students."
+    else
+      puts "now we have 1 student."
+    end
     # get another name from the user
     name = gets.chomp
   end
