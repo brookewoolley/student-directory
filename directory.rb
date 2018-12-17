@@ -38,28 +38,31 @@ def print_header
 end
 
 def print(students)
-  students.each_with_index do |student, index|
-    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+  students_index = 0
+  while students.length > students_index do
+    puts "#{students[students_index][:name]} (#{students[students_index][:cohort]} cohort)"
+    students_index += 1
   end
 end
 
-def print_selected_letter(students)
-  puts "What names would you like me to return by first-letter?"
-  letter = gets.chomp
-  students.each_with_index do |student, index|
-    if student[:name][0] == letter.upcase
-      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-    end
-  end
-end
 
-def print_12_character(students)
-  students.each_with_index do |student, index|
-    if student[:name].length <= 12
-      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-    end
-  end
-end
+# def print_selected_letter(students)
+#   puts "What names would you like me to return by first-letter?"
+#   letter = gets.chomp
+#   students.each_with_index do |student, index|
+#     if student[:name][0] == letter.upcase
+#       puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+#     end
+#   end
+# end
+
+# def print_12_character(students)
+#   students.each_with_index do |student, index|
+#     if student[:name].length <= 12
+#       puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+#     end
+#   end
+# end
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
@@ -68,7 +71,7 @@ end
 
 students = input_students
 print_header
-# print(students)
+print(students)
 # print_selected_letter(students)
-print_12_character(students)
+# print_12_character(students)
 print_footer(students)
