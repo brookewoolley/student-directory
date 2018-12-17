@@ -47,10 +47,18 @@ def print_selected_letter(students)
   puts "What names would you like me to return by first-letter?"
   letter = gets.chomp
   students.each_with_index do |student, index|
-  if student[:name][0] == letter.upcase
-    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    if student[:name][0] == letter.upcase
+      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
+
+def print_12_character(students)
+  students.each_with_index do |student, index|
+    if student[:name].length <= 12
+      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    end
+  end
 end
 
 def print_footer(students)
@@ -61,5 +69,6 @@ end
 students = input_students
 print_header
 # print(students)
-print_selected_letter(students)
+# print_selected_letter(students)
+print_12_character(students)
 print_footer(students)
