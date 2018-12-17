@@ -37,14 +37,14 @@ def input_students
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(60)
+  puts "-------------".center(60)
 end
 
 def print(students)
   students_index = 0
   while students.length > students_index do
-    puts "#{students[students_index][:name]} (#{students[students_index][:cohort]} cohort) is from #{students[students_index][:country]} and is #{students[students_index][:height]}cm."
+    puts "#{students[students_index][:name]} (#{students[students_index][:cohort]} cohort) is from #{students[students_index][:country]} and is #{students[students_index][:height]}cm.".center(60)
     students_index += 1
   end
 end
