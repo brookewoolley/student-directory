@@ -1,13 +1,15 @@
+# exercise 7 outstanding:  What if the user makes a typo?
+
 def input_students
   puts "Please enter the name of the student"
   puts "To finish, just hit return twice"
   # create an empty array
   students = []
   name = gets.chomp
-  # while the name if not empty, repeat this code
+  # while the name is not empty, repeat this code
   while !name.empty? do
     puts "What cohort are you joining?"
-    cohort = gets.chomp
+    cohort = gets.chomp.downcase
     cohort_list = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
     puts "Please enter your birth country."
     country = gets.chomp
@@ -15,6 +17,8 @@ def input_students
     height = gets.chomp
     if cohort_list.include?(cohort)
       students << {name: name, cohort: cohort.downcase.to_sym, country: country, height: height}
+    elsif !cohort_list.include?(cohort)
+      students << {name: name, cohort: :unknown, country: country, height: height}
     end
     if students.length > 1
       puts "Now we have #{students.count} students."
@@ -40,7 +44,6 @@ def print(students)
     students_index += 1
   end
 end
-
 
 # def print_selected_letter(students)
 #   puts "What names would you like me to return by first-letter?"
