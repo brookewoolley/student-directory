@@ -1,5 +1,3 @@
-# exercise 7 outstanding:  What if the user makes a typo?
-
 def input_students
   puts "Please enter the name of the student"
   puts "To finish, just hit return twice"
@@ -46,11 +44,33 @@ end
 
 def print(students)
   students_index = 0
-  while students.length > students_index do
-    puts "#{students[students_index][:name]} (#{students[students_index][:cohort].capitalize} cohort) is from #{students[students_index][:country]} and is #{students[students_index][:height]}cm.".center(60)
-    students_index += 1
+  if students.empty?
+    puts "No students to print"
+  else
+    while students.length > students_index do
+      puts "#{students[students_index][:name]} (#{students[students_index][:cohort].capitalize} cohort) is from #{students[students_index][:country]} and is #{students[students_index][:height]}cm.".center(60)
+      students_index += 1
+    end
   end
 end
+
+def print_footer(students)
+  if students.length == 0
+    puts "We have no students"
+  elsif students.length > 1
+    puts "Overall, we have #{students.count} great students"
+  else
+    puts "We have 1 great student"
+  end
+end
+
+
+students = input_students
+print_header
+print(students)
+# print_selected_letter(students)
+# print_12_character(students)
+print_footer(students)
 
 # def print_selected_letter(students)
 #   puts "What names would you like me to return by first-letter?"
@@ -69,19 +89,3 @@ end
 #     end
 #   end
 # end
-
-def print_footer(students)
-  if students.length > 1
-    puts "Overall, we have #{students.count} great students"
-  else
-    puts "We have 1 great student"
-  end
-end
-
-
-students = input_students
-print_header
-print(students)
-# print_selected_letter(students)
-# print_12_character(students)
-print_footer(students)
