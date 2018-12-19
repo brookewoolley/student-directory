@@ -5,21 +5,21 @@ def input_students
   puts "To finish, just hit return twice"
   # create an empty array
   students = []
-  name = gets.chomp
+  name = gets.chop
   # while the name is not empty, repeat this code
   while !name.empty? do
     puts "Please enter your birth country."
-    country = gets.chomp
+    country = gets.chop
     puts "Please enter your height in cm."
-    height = gets.chomp
+    height = gets.chop
     puts "What cohort are you joining?"
-    cohort = gets.chomp.downcase
+    cohort = gets.chop.downcase
     cohort_list = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "unknown"]
     if cohort_list.include?(cohort)
       students << {name: name, cohort: cohort.downcase.to_sym, country: country, height: height}
     elsif !cohort_list.include?(cohort)
       puts "We don't know that cohort you entered, would you like to try again?"
-      cohort = gets.chomp.downcase
+      cohort = gets.chop.downcase
       if cohort_list.include?(cohort)
         students << {name: name, cohort: cohort.downcase.to_sym, country: country, height: height}
       else
@@ -33,7 +33,7 @@ def input_students
       puts "Now we have 1 student."
     end
     # get another name from the user
-    name = gets.chomp
+    name = gets.chop
   end
   # return the array of students
   students
