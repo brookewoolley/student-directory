@@ -8,17 +8,24 @@ def input_students
   name = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
-    puts "What cohort are you joining?"
-    cohort = gets.chomp.downcase
-    cohort_list = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
     puts "Please enter your birth country."
     country = gets.chomp
     puts "Please enter your height in cm."
     height = gets.chomp
+    puts "What cohort are you joining?"
+    cohort = gets.chomp.downcase
+    cohort_list = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "unknown"]
     if cohort_list.include?(cohort)
       students << {name: name, cohort: cohort.downcase.to_sym, country: country, height: height}
     elsif !cohort_list.include?(cohort)
-      students << {name: name, cohort: :unknown, country: country, height: height}
+      puts "We don't know that cohort you entered, would you like to try again?"
+      cohort = gets.chomp.downcase
+      if cohort_list.include?(cohort)
+        students << {name: name, cohort: cohort.downcase.to_sym, country: country, height: height}
+      else
+        students << {name: name, cohort: :unknown, country: country, height: height}
+        break
+      end
     end
     if students.length > 1
       puts "Now we have #{students.count} students."
