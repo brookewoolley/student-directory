@@ -1,6 +1,7 @@
 @students = [] # an empty array accessible to all methods
 
 def input_students
+  puts "You've selected 1. Input the students."
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # get the first name
@@ -43,6 +44,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "Successfully saved!"
 end
 
 def load_students(filename = "students.csv")
@@ -52,6 +54,7 @@ def load_students(filename = "students.csv")
     add_students(name, cohort.to_sym)
   end
   file.close
+  puts "File loaded.  Choose option 2 to see the list."
 end
 
 def add_students(name, cohort = :november)
