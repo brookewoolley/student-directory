@@ -6,17 +6,19 @@ def input_students
   # get the first name
   name = STDIN.gets.chomp
   # while the name is not empty, repeat this code
-  while !name.empty? {
+  while !name.empty? do
     add_students(name)
     puts "Now we have #{@students.count} students"
     # get another name from the user
-    name = STDIN.gets.chomp }
+    name = STDIN.gets.chomp
+  end
 end
 
 def interactive_menu
-  loop {
+  loop do
     print_menu
-    process(STDIN.gets.chomp) }
+    process(STDIN.gets.chomp)
+  end
 end
 
 def print_menu
@@ -97,6 +99,6 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
-load_students
+
 try_load_students
 interactive_menu
