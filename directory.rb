@@ -6,19 +6,17 @@ def input_students
   # get the first name
   name = STDIN.gets.chomp
   # while the name is not empty, repeat this code
-  while !name.empty? do
+  while !name.empty? {
     add_students(name)
     puts "Now we have #{@students.count} students"
     # get another name from the user
-    name = STDIN.gets.chomp
-  end
+    name = STDIN.gets.chomp }
 end
 
 def interactive_menu
-  loop do
+  loop {
     print_menu
-    process(STDIN.gets.chomp)
-  end
+    process(STDIN.gets.chomp) }
 end
 
 def print_menu
@@ -37,20 +35,18 @@ end
 
 def save_students
   file = File.open("students.csv", "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
-  end
+  @students.each { |student|
+    student_data = [student[:name], student[:cohort]].join(",")
+    # csv_line = student_data.join(",") - REFACTORED by adding join above.
+    file.puts student_data }
   file.close
 end
 
 def load_students(filename = "students.csv")
   file = File.open(filename, "r")
-  file.readlines.each do |line|
+  file.readlines.each { |line|
     name, cohort = line.chomp.split(',')
-    add_students(name, cohort.to_sym)
-  end
+    add_students(name, cohort.to_sym) }
   file.close
 end
 
@@ -93,15 +89,14 @@ def print_header
 end
 
 def print_student_list
-  @students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
-  end
-
+  @students.each { |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)" }
 end
 
 def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
+load_students
 try_load_students
 interactive_menu
