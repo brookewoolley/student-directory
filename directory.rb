@@ -38,21 +38,19 @@ end
 
 def save_students
   file = File.open("students.csv", "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
-  end
+  @students.each { |student|
+    student_data = [student[:name], student[:cohort]].join(",")
+    # csv_line = student_data.join(",") - REFACTORED by adding join above.
+    file.puts student_data }
   file.close
   puts "Successfully saved!"
 end
 
 def load_students(filename = "students.csv")
   file = File.open(filename, "r")
-  file.readlines.each do |line|
+  file.readlines.each { |line|
     name, cohort = line.chomp.split(',')
-    add_students(name, cohort.to_sym)
-  end
+    add_students(name, cohort.to_sym) }
   file.close
   puts "File loaded.  Choose option 2 to see the list."
 end
@@ -96,15 +94,14 @@ def print_header
 end
 
 def print_student_list
-  @students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
-  end
-
+  @students.each { |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)" }
 end
 
 def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
+
 
 try_load_students
 interactive_menu
