@@ -25,8 +25,8 @@ end
 def print_menu
   puts "1. Input the students."
   puts "2. Show the students."
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list."
+  puts "4. Load the list."
   puts "9. Exit."
 end
 
@@ -37,7 +37,9 @@ def show_students
 end
 
 def save_students
-  file = File.open("students.csv", "w")
+  puts "What file would you like to save to?"
+  filename = gets.chomp
+  file = File.open(filename, "w")
   @students.each { |student|
     student_data = [student[:name], student[:cohort]].join(",")
     # csv_line = student_data.join(",") - REFACTORED by adding join above.
@@ -47,6 +49,8 @@ def save_students
 end
 
 def load_students(filename = "students.csv")
+  puts "What file would you like to load?"
+  filename = gets.chomp
   file = File.open(filename, "r")
   file.readlines.each { |line|
     name, cohort = line.chomp.split(',')
