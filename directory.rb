@@ -49,14 +49,19 @@ def save_students
 end
 
 def load_students(filename = "students.csv")
-  puts "What file would you like to load?"
+  puts "What file would you like to load? Will default to students.csv if no input."
   filename = gets.chomp
-  file = File.open(filename, "r")
-  file.readlines.each { |line|
+  if filename.empty?
+    file = File.open("students.csv", "r").readlines.each { |line|
+      name, cohort = line.chomp.split(',')
+      add_students(name, cohort.to_sym) }
+    puts "students.csv loaded.  Choose option 2 to see the list."
+  else
+  file = File.open(filename, "r").readlines.each { |line|
     name, cohort = line.chomp.split(',')
     add_students(name, cohort.to_sym) }
-  file.close
-  puts "File loaded.  Choose option 2 to see the list."
+  puts "#{filename} loaded.  Choose option 2 to see the list."
+end
 end
 
 def add_students(name, cohort = :november)
