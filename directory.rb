@@ -1,3 +1,5 @@
+require 'csv'
+
 @students = [] # an empty array accessible to all methods
 
 def input_students
@@ -39,12 +41,11 @@ end
 def save_students
   puts "What file would you like to save to?"
   filename = gets.chomp
-  file = File.open(filename, "w")
-  @students.each { |student|
-    student_data = [student[:name], student[:cohort]].join(",")
+  file = CSV.open("#{filename}", "w")
+    @students.each { |student|
+    student_data = [student[:name], student[:cohort]]
     # csv_line = student_data.join(",") - REFACTORED by adding join above.
-    file.puts student_data }
-  file.close
+    file << student_data }
   puts "Successfully saved!"
 end
 
@@ -52,13 +53,13 @@ def load_students(filename = "students.csv")
   puts "What file would you like to load? Will default to students.csv if no input."
   filename = gets.chomp
   if filename.empty?
-    file = File.open("students.csv", "r").readlines.each { |line|
-      name, cohort = line.chomp.split(',')
+    file = CSV.foreach("students.csv") { |line|
+      name, cohort = line
       add_students(name, cohort.to_sym) }
     puts "students.csv loaded.  Choose option 2 to see the list."
   else
-  file = File.open(filename, "r").readlines.each { |line|
-    name, cohort = line.chomp.split(',')
+  file = CSV.foreach("#{filename}") { |line|
+    name, cohort = line
     add_students(name, cohort.to_sym) }
   puts "#{filename} loaded.  Choose option 2 to see the list."
 end
